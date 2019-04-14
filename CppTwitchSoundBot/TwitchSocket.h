@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <stdint.h>
+#include <functional>
 #pragma once
 
 namespace gh {
@@ -31,6 +32,7 @@ namespace gh {
 		std::string receive();
         int connect();
 		TwitchSocket(std::string username, std::string password);
+		std::function<int(const std::string&)> sendToChannel(const std::string& channel);
         
 		TwitchSocket(const TwitchSocket&) = delete;
 		TwitchSocket& operator=(const TwitchSocket&) = delete;

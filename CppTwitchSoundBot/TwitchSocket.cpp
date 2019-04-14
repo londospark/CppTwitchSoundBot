@@ -15,10 +15,22 @@ namespace gh
     {
         return ::send(this->Connection, information.c_str(), information.length(), NULL);
     }
+
+	std::function<int(const std::string&)> TwitchSocket::sendToChannel(const std::string& channel)
+	{
+		return [=](const std::string & message) -> int {
+			return this->send("PRIVMSG #" + channel + " :" + message + "\r\n");
+		};
+	}
     
     std::string TwitchSocket::receive()
     {
         int bytesReceived = recv(this->Connection, buffer.data(), BufferLength, NULL);
+        if (bytesReceived < 0)
+        {
+            return "";
+        }
+        
         return std::string(buffer.begin(), buffer.begin() + bytesReceived);
     }
     

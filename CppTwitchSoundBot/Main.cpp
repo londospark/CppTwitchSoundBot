@@ -1,3 +1,4 @@
+#include <Windows.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,6 +7,15 @@
 #include <chrono>
 #include "TwitchSocket.h"
 
+bool BotCommand(const std::string & commandName, const std::string & command, std::string * args) {
+	int split = commandName.length() + 1;
+	if (command.substr(0, split) == commandName + " ")
+	{
+		*args = command.substr(split);
+		return true;
+	}
+	return false;
+};
 
 int main()
 {
@@ -18,14 +28,14 @@ int main()
         file.close();
     }
     
-	gh::TwitchSocket twitch("garethhubball", OAuthToken);
+	gh::TwitchSocket twitch("hubballbot", OAuthToken);
     
     if (twitch.connect() == 1)
     {
         return 1;
     }
     
-	(void)twitch.receive();
+	std::cout << twitch.receive() << std::endl;
     
 	twitch.send("JOIN #garethhubball\r\n");
     
@@ -38,21 +48,51 @@ int main()
 	std::chrono::system_clock clock;
 	std::chrono::time_point<std::chrono::system_clock> last_horn;
 	last_horn = clock.now() - std::chrono::seconds(30);
+
+	auto sendMessage = twitch.sendToChannel("garethhubball");
     
-	while (1)
+	sendMessage("HubballBot is now online");
+
+	while (true)
 	{
 		std::string reply = twitch.receive();
 		std::regex_search(reply, match, re);
-		std::cout << reply << std::endl;
+		std::cout << reply << std::flush;
 		std::cout << "User: " << match[1] << std::endl;
 		std::cout << "channel: " << match[2] << " message: " << match[3] << std::endl;
-		if (match[3] == "!horn")
+
+		std::string user = match[1].str();
+		std::string command = match[3].str();
+
+		std::string arguments;
+
+		if (command == "!horn")
 		{
 			if (clock.now() - last_horn >= std::chrono::seconds(30))
 			{
 				PlaySound("horn.wav", NULL, SND_FILENAME);
 				last_horn = clock.now();
 			}
+		}
+
+		if (command == "!random")
+		{
+			sendMessage("@" + user + " asked for a random number and rolled a 4");
+		}
+
+		if (command == "!hi")
+		{
+			sendMessage("gareth3Hype Hi chat gareth3Hype");
+		}
+
+		if (BotCommand("!tnt", command, &arguments))
+		{
+			sendMessage("Bye for now " + arguments);
+		}
+
+		if (BotCommand("!welcome", command, &arguments))
+		{
+			sendMessage("Welcome to the chat " + arguments + " gareth3Hype");
 		}
 	}
 	return 0;
