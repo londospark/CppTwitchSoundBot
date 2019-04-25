@@ -11,19 +11,19 @@
 
 namespace gh
 {
-    int TwitchSocket::send(const std::string &information)
+    int twitch_socket::send(const std::string &information)
     {
         return ::send(this->Connection, information.c_str(), information.length(), NULL);
     }
 
-	std::function<int(const std::string&)> TwitchSocket::sendToChannel(const std::string& channel)
+	std::function<int(const std::string&)> twitch_socket::sendToChannel(const std::string& channel)
 	{
 		return [=](const std::string & message) -> int {
 			return this->send("PRIVMSG #" + channel + " :" + message + "\r\n");
 		};
 	}
     
-    std::string TwitchSocket::receive()
+    std::string twitch_socket::receive()
     {
         int bytesReceived = recv(this->Connection, buffer.data(), BufferLength, NULL);
         if (bytesReceived < 0)
@@ -34,14 +34,14 @@ namespace gh
         return std::string(buffer.begin(), buffer.begin() + bytesReceived);
     }
     
-    TwitchSocket::TwitchSocket(std::string username, std::string password)
+    twitch_socket::twitch_socket(std::string username, std::string password)
     {
 		this->Connection = INVALID_SOCKET;
         this->username = username;
         this->password = password;
     }
     
-    int TwitchSocket::connect()
+    int twitch_socket::connect()
     {
         WSADATA wsaData;
         addrinfo hints{};

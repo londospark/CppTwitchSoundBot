@@ -14,8 +14,8 @@
 namespace gh {
 	constexpr int BufferLength = 512;
     
-	class TwitchSocket {
-        private:
+	class twitch_socket {
+    private:
 		std::vector<char> buffer = std::vector<char>(BufferLength);
 		std::string username;
         std::string password;
@@ -27,14 +27,17 @@ namespace gh {
 #error "Please define wither TB_WINDOWS or TB_UNIX"
 #endif
         
-        public:
+    public:
+		twitch_socket(std::string username, std::string password);
+
+		int connect();
+
 		int send(const std::string& information);
-		std::string receive();
-        int connect();
-		TwitchSocket(std::string username, std::string password);
 		std::function<int(const std::string&)> sendToChannel(const std::string& channel);
-        
-		TwitchSocket(const TwitchSocket&) = delete;
-		TwitchSocket& operator=(const TwitchSocket&) = delete;
+
+		std::string receive();
+		        
+		twitch_socket(const twitch_socket&) = delete;
+		twitch_socket& operator=(const twitch_socket&) = delete;
 	};
 }
