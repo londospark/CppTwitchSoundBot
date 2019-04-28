@@ -10,7 +10,8 @@ The development of this bot gets streamed on [Twitch](https://twitch.tv/garethhu
 
 - Clone the repo.
 - Open the sln file in Visual Studio.
-- Replace instances of `garethhubball` with your username.
+- Make sure that you have `BOOST_ROOT` set.
+- Replace instances of `hubballbot` with your username.
 - Create a text file called `supersecret.txt` in the solution folder with your OAuth token in it.
   - [Get your OAuth token.](https://twitchapps.com/tmi/)
 - Compile and run.
