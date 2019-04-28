@@ -1,3 +1,5 @@
+#include "pch.hpp"
+
 #include <Winsock2.h>
 #include <Windows.h>
 #include <ws2tcpip.h>

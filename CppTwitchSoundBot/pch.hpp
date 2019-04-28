@@ -1,0 +1,15 @@
+#pragma once
+#include <Winsock2.h>
+#include <Windows.h>
+#include <ws2tcpip.h>
+#include <boost/spirit/include/qi.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/fusion/sequence/intrinsic/at_c.hpp>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <regex>
+#include <chrono>
+#include <map>
+#include <sstream>

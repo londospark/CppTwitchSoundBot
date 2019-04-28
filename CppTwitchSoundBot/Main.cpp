@@ -1,3 +1,5 @@
+#include "pch.hpp"
+
 #include <Windows.h>
 #include <iostream>
 #include <fstream>
@@ -7,10 +9,8 @@
 #include <chrono>
 #include <map>
 #include <sstream>
-#include <boost/algorithm/string.hpp>
 #include "TwitchSocket.h"
-
-using user_attributes = std::map<std::string, std::string>;
+#include "Parser.h"
 
 bool
 bot_command(const std::string & commandName, const std::string & command, std::string * args) {
@@ -23,23 +23,6 @@ bot_command(const std::string & commandName, const std::string & command, std::s
 
 	return false;
 };
-
-user_attributes
-attributes_for(const std::string & attrList) {
-	user_attributes results;
-	
-	std::vector<std::string> keyValuePairs;
-	boost::algorithm::split(keyValuePairs, attrList, boost::algorithm::is_any_of(";"));
-	
-	for (const auto & kvp : keyValuePairs)
-	{
-		std::vector<std::string> elements;
-		boost::algorithm::split(elements, kvp, boost::algorithm::is_any_of("="));
-		results[elements.front()] = elements.back();
-	}
-
-	return results;
-}
 
 bool
 is_moderator(const user_attributes& attributes)
@@ -76,7 +59,7 @@ main()
 	twitch.send("CAP REQ :twitch.tv/tags\r\n");
     
 	// Parse Message
-	// :rhymu8354!rhymu8354@rhymu8354.tmi.twitch.tv PRIVMSG #garethhubball :test
+	// @key=value;key=value :rhymu8354!rhymu8354@rhymu8354.tmi.twitch.tv PRIVMSG #garethhubball :test
 	// :hackur!hackur@hackur.tmi.twitch.tv PRIVMSG #garethhubball :test1
 	std::regex re(R"RE(^@(.+) :([^!]+)![^@]+@[^\.]+\.tmi\.twitch\.tv PRIVMSG #([^\s]+) :(.*))RE");
 	std::smatch match;
@@ -135,7 +118,7 @@ main()
 
 		if (bot_command("!tnt", command, &arguments))
 		{
-			send_message("Bye for now " + arguments);
+			send_message("gareth3Hype gareth3Hype Until next time " + arguments + " gareth3Hype gareth3Hype");
 		}
 
 		if (command == "!raidcall")
