@@ -1,5 +1,4 @@
 #include "pch.hpp"
-
 #include <Windows.h>
 #include <iostream>
 #include <fstream>
@@ -9,12 +8,14 @@
 #include <chrono>
 #include <map>
 #include <sstream>
+#include <codecvt>
+#include "command_repository.h"
 #include "TwitchSocket.h"
 #include "Parser.h"
 
 bool
-bot_command(const std::string & commandName, const std::string & command, std::string * args) {
-	int split = commandName.length() + 1;
+bot_command(std::string const& commandName, std::string const& command, std::string* args) {
+	size_t split = commandName.length() + 1;
 	if (command.substr(0, split) == commandName + " ")
 	{
 		*args = command.substr(split);
@@ -24,9 +25,16 @@ bot_command(const std::string & commandName, const std::string & command, std::s
 	return false;
 };
 
-bool
-is_moderator(const user_attributes& attributes)
+//TODO: Cleanup to include the broadcaster
+bool const
+is_moderator(user_attributes& const attributes)
 {
+	if (auto it = attributes.find("display-name"); it != attributes.end())
+	{
+		if (it->second == "GarethHubball")
+			return true;
+	}
+
 	if (auto it = attributes.find("user-type"); it != attributes.end())
 	{
 		return it->second == "mod";
@@ -38,101 +46,130 @@ int
 main()
 {
 	std::ifstream file("supersecret.txt");
-    std::string oauth_token;
-    
-    if (file.is_open())
-    {
-        std::getline(file, oauth_token, '\n');
-        file.close();
-    }
-    
+	std::string oauth_token;
+
+	if (file.is_open())
+	{
+		std::getline(file, oauth_token, '\n');
+		file.close();
+	}
+
 	gh::twitch_socket twitch("hubballbot", oauth_token);
-    
-    if (twitch.connect() == 1)
-    {
-        return 1;
-    }
-    
+
+	if (twitch.connect() == 1)
+	{
+		return 1;
+	}
+
 	std::cout << twitch.receive() << std::endl;
-    
+
 	twitch.send("JOIN #garethhubball\r\n");
 	twitch.send("CAP REQ :twitch.tv/tags\r\n");
-    
+
 	// Parse Message
 	// @key=value;key=value :rhymu8354!rhymu8354@rhymu8354.tmi.twitch.tv PRIVMSG #garethhubball :test
 	// :hackur!hackur@hackur.tmi.twitch.tv PRIVMSG #garethhubball :test1
-	std::regex re(R"RE(^@(.+) :([^!]+)![^@]+@[^\.]+\.tmi\.twitch\.tv PRIVMSG #([^\s]+) :(.*))RE");
-	std::smatch match;
+	//std::regex re(R"RE(^@(.+) :([^!]+)![^@]+@[^\.]+\.tmi\.twitch\.tv PRIVMSG #([^\s]+) :(.*))RE");
+	//std::smatch match;
 
 	std::chrono::system_clock clock;
 	std::chrono::time_point<std::chrono::system_clock> last_horn;
 	last_horn = clock.now() - std::chrono::seconds(30);
 
-	auto send_message = twitch.sendToChannel("garethhubball");
-    
+	auto const send_message = twitch.sendToChannel("garethhubball");
+
+	gh::command_repository repo("hubballbot.db");
+
+	/*if (result != 0)
+	{
+		std::cout << "Database not opened." << std::endl;
+		return result;
+	}*/
+
+	std::map<std::string, std::string> commands = repo.load_commands();
+
 	send_message("HubballBot is now online");
 
 	while (true)
 	{
 		std::string reply = twitch.receive();
-		std::regex_search(reply, match, re);
-
-		std::map<std::string, std::string> attributes = attributes_for(match[1]);
-		
-		std::cout << reply << std::flush;
-		std::cout << "Attributes: " << match[1] << std::endl;
-		std::cout << "User: " << match[2] << std::endl;
-		std::cout << "channel: " << match[3] << " message: " << match[4] << std::endl;
-
-		std::string user = match[2].str();
-		std::string command = match[4].str();
-
-		std::string arguments;
-
-		if (command == "!horn" && is_moderator(attributes))
+		twitch_message message;
+		if (parse_message(reply, message))
 		{
-			auto lastUsed = clock.now() - last_horn;
-			if (lastUsed >= std::chrono::seconds(30))
+			std::map<std::string, std::string> attributes = message.attributes;
+
+			std::cout << reply << std::flush;
+			std::cout << "User: " << message.username << std::endl;
+			std::cout << "channel: " << message.channel << " message: " << message.body << std::endl;
+			
+			std::string arguments;
+
+			if (message.body == "!horn" && is_moderator(attributes))
 			{
-				PlaySound("horn.wav", NULL, SND_FILENAME);
-				last_horn = clock.now();
+				auto lastUsed = clock.now() - last_horn;
+				if (lastUsed >= std::chrono::seconds(30))
+				{
+					PlaySound("horn.wav", NULL, SND_FILENAME);
+					last_horn = clock.now();
+				}
+				else
+				{
+					using std::chrono::seconds;
+					using std::chrono::duration_cast;
+
+					auto waitingTime = duration_cast<seconds>(seconds(30) - lastUsed).count();
+					std::stringstream stream;
+					stream << "Horn in cooldown, please wait " << waitingTime << " seconds";
+					send_message(stream.str());
+				}
 			}
-			else
+
+			if (is_moderator(attributes) && bot_command("!addcom", message.body, &arguments))
 			{
-				auto waitingTime = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::seconds(30) - lastUsed).count();
-				std::stringstream stream;
-				stream << "Horn in cooldown, please wait " << waitingTime << " seconds";
-				send_message(stream.str());
+				// !addcom youtube Follow Gareth on youtube...
+			
+				int index = arguments.find_first_of(" ");
+				if (index != std::string::npos) {
+					std::string command_to_add;
+					std::string reply;
+					
+					command_to_add = arguments.substr(0, index);
+					reply = arguments.substr(index + 1);
+
+					repo.add_command(command_to_add, reply);
+					commands[command_to_add] = reply;
+				}
 			}
-		}
 
-		if (command == "!random")
-		{
-			send_message("@" + user + " asked for a random number and rolled a 4");
-		}
+			if (message.body == "!random")
+			{
+				send_message("@" + message.username + " asked for a random number and rolled a 4");
+			}
 
-		if (command == "!hi")
-		{
-			send_message("gareth3Hype Hi chat gareth3Hype");
-		}
+			if (bot_command("!tnt", message.body, &arguments))
+			{
+				send_message("gareth3Hype gareth3Hype Until next time " + arguments + " gareth3Hype gareth3Hype");
+			}
 
-		if (bot_command("!tnt", command, &arguments))
-		{
-			send_message("gareth3Hype gareth3Hype Until next time " + arguments + " gareth3Hype gareth3Hype");
-		}
+			if (bot_command("!welcome", message.body, &arguments))
+			{
+				send_message("Welcome to the chat " + arguments + " gareth3Hype");
+			}
 
-		if (command == "!raidcall")
-		{
-			send_message("Subscribers - please use the following raid call:");
-			send_message("gareth3Hype gareth3Hype gareth3Hype YAPPY DOG RAID gareth3Hype gareth3Hype gareth3Hype");
-			send_message("Non-subscribers: ");
-			send_message("YAPPY DOG RAID! YAPPY DOG RAID!");
-		}
-
-		if (bot_command("!welcome", command, &arguments))
-		{
-			send_message("Welcome to the chat " + arguments + " gareth3Hype");
+			if (!message.body.empty() && message.body.front() == '!')
+			{
+				auto command = commands.find(message.body.substr(1));
+				if (command != commands.end())
+				{
+					send_message(command->second);
+				}
+				else
+				{
+					std::cout << "Command: " << message.body.substr(1) << " not found" << std::endl;
+				}
+			}
 		}
 	}
+		
 	return 0;
 }

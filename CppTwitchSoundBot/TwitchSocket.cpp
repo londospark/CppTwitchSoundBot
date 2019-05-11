@@ -15,7 +15,7 @@ namespace gh
 {
     int twitch_socket::send(const std::string &information)
     {
-        return ::send(this->Connection, information.c_str(), information.length(), NULL);
+        return ::send(this->Connection, information.c_str(), static_cast<int>(information.length()), NULL);
     }
 
 	std::function<int(const std::string&)> twitch_socket::sendToChannel(const std::string& channel)
@@ -74,7 +74,7 @@ namespace gh
             return 1;
         }
         
-        if (::connect(this->Connection, result->ai_addr, result->ai_addrlen) == SOCKET_ERROR)
+        if (::connect(this->Connection, result->ai_addr, static_cast<int>(result->ai_addrlen)) == SOCKET_ERROR)
         {
             std::cout << "[ERR] Connected with an error" << std::endl;
             closesocket(this->Connection);
