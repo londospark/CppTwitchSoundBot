@@ -10,7 +10,7 @@ The development of this bot gets streamed on [Twitch](https://twitch.tv/garethhu
 
 - Clone the repo.
 - Open the sln file in Visual Studio.
-- Make sure that you have `BOOST_ROOT` set.
+- Install `boost` and `boost-spirit` via [vcpkg](https://github.com/microsoft/vcpkg)
 - Replace instances of `hubballbot` with your username.
 - Create a text file called `supersecret.txt` in the solution folder with your OAuth token in it.
   - [Get your OAuth token.](https://twitchapps.com/tmi/)
