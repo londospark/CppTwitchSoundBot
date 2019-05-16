@@ -150,20 +150,22 @@
   <ItemGroup>
     <ClCompile Include="command_repository.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="twitch_message.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TwitchSocket.cpp" />
+    <ClCompile Include="twitch_socket.cpp" />
+    <ClCompile Include="twitch_user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="command_repository.h" />
-    <ClInclude Include="Parser.h" />
+    <ClInclude Include="twitch_message.h" />
     <ClInclude Include="pch.hpp" />
-    <ClInclude Include="TwitchSocket.h" />
+    <ClInclude Include="twitch_socket.h" />
+    <ClInclude Include="twitch_user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

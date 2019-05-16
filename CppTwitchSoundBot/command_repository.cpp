@@ -19,10 +19,7 @@ namespace {
 
 namespace gh {
 	command_repository::command_repository(std::string const& filename)
-		: db_handle(connect(filename))
-	{
-
-	}
+		: db_handle(connect(filename)) { }
 
 	command_repository::~command_repository()
 	{

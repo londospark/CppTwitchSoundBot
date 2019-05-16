@@ -9,9 +9,10 @@
 #include <map>
 #include <sstream>
 #include <codecvt>
+#include <optional>
 #include "command_repository.h"
-#include "TwitchSocket.h"
-#include "Parser.h"
+#include "twitch_socket.h"
+#include "twitch_message.h"
 
 bool
 bot_command(std::string const& commandName, std::string const& command, std::string* args) {
@@ -24,23 +25,6 @@ bot_command(std::string const& commandName, std::string const& command, std::str
 
 	return false;
 };
-
-//TODO: Cleanup to include the broadcaster
-bool const
-is_moderator(user_attributes& const attributes)
-{
-	if (auto it = attributes.find("display-name"); it != attributes.end())
-	{
-		if (it->second == "GarethHubball")
-			return true;
-	}
-
-	if (auto it = attributes.find("user-type"); it != attributes.end())
-	{
-		return it->second == "mod";
-	}
-	return false;
-}
 
 int
 main()
@@ -93,79 +77,80 @@ main()
 	while (true)
 	{
 		std::string reply = twitch.receive();
-		twitch_message message;
-		if (parse_message(reply, message))
+		if (auto message = gh::twitch_message::parse(reply))
 		{
-			std::map<std::string, std::string> attributes = message.attributes;
-
 			std::cout << reply << std::flush;
-			std::cout << "User: " << message.username << std::endl;
-			std::cout << "channel: " << message.channel << " message: " << message.body << std::endl;
+			std::cout << "User: " << message->username << std::endl;
+			std::cout << "channel: " << message->channel << " message: " << message->body << std::endl;
 			
-			std::string arguments;
 
-			if (message.body == "!horn" && is_moderator(attributes))
+			if (auto user = message->user)
 			{
-				auto lastUsed = clock.now() - last_horn;
-				if (lastUsed >= std::chrono::seconds(30))
+				std::string arguments;
+
+				if (message->body == "!horn" && user->is_moderator())
 				{
-					PlaySound("horn.wav", NULL, SND_FILENAME);
-					last_horn = clock.now();
+					auto lastUsed = clock.now() - last_horn;
+					if (lastUsed >= std::chrono::seconds(30))
+					{
+						PlaySound("horn.wav", NULL, SND_FILENAME);
+						last_horn = clock.now();
+					}
+					else
+					{
+						using std::chrono::seconds;
+						using std::chrono::duration_cast;
+
+						auto waitingTime = duration_cast<seconds>(seconds(30) - lastUsed).count();
+						std::stringstream stream;
+						stream << "Horn in cooldown, please wait " << waitingTime << " seconds";
+						send_message(stream.str());
+					}
 				}
-				else
+
+				if (user->is_moderator() && bot_command("!addcom", message->body, &arguments))
 				{
-					using std::chrono::seconds;
-					using std::chrono::duration_cast;
+					// !addcom youtube Follow Gareth on youtube...
 
-					auto waitingTime = duration_cast<seconds>(seconds(30) - lastUsed).count();
-					std::stringstream stream;
-					stream << "Horn in cooldown, please wait " << waitingTime << " seconds";
-					send_message(stream.str());
+					int index = arguments.find_first_of(" ");
+					if (index != std::string::npos) {
+						std::string command_to_add;
+						std::string reply;
+
+						command_to_add = arguments.substr(0, index);
+						reply = arguments.substr(index + 1);
+
+						repo.add_command(command_to_add, reply);
+						commands[command_to_add] = reply;
+					}
 				}
-			}
 
-			if (is_moderator(attributes) && bot_command("!addcom", message.body, &arguments))
-			{
-				// !addcom youtube Follow Gareth on youtube...
-			
-				int index = arguments.find_first_of(" ");
-				if (index != std::string::npos) {
-					std::string command_to_add;
-					std::string reply;
-					
-					command_to_add = arguments.substr(0, index);
-					reply = arguments.substr(index + 1);
-
-					repo.add_command(command_to_add, reply);
-					commands[command_to_add] = reply;
-				}
-			}
-
-			if (message.body == "!random")
-			{
-				send_message("@" + message.username + " asked for a random number and rolled a 4");
-			}
-
-			if (bot_command("!tnt", message.body, &arguments))
-			{
-				send_message("gareth3Hype gareth3Hype Until next time " + arguments + " gareth3Hype gareth3Hype");
-			}
-
-			if (bot_command("!welcome", message.body, &arguments))
-			{
-				send_message("Welcome to the chat " + arguments + " gareth3Hype");
-			}
-
-			if (!message.body.empty() && message.body.front() == '!')
-			{
-				auto command = commands.find(message.body.substr(1));
-				if (command != commands.end())
+				if (message->body == "!random")
 				{
-					send_message(command->second);
+					send_message("@" + message->username + " asked for a random number and rolled a 4");
 				}
-				else
+
+				if (bot_command("!tnt", message->body, &arguments))
 				{
-					std::cout << "Command: " << message.body.substr(1) << " not found" << std::endl;
+					send_message("gareth3Hype gareth3Hype Until next time " + arguments + " gareth3Hype gareth3Hype");
+				}
+
+				if (bot_command("!welcome", message->body, &arguments))
+				{
+					send_message("Welcome to the chat " + arguments + " gareth3Hype");
+				}
+
+				if (!message->body.empty() && message->body.front() == '!')
+				{
+					auto command = commands.find(message->body.substr(1));
+					if (command != commands.end())
+					{
+						send_message(command->second);
+					}
+					else
+					{
+						std::cout << "Command: " << message->body.substr(1) << " not found" << std::endl;
+					}
 				}
 			}
 		}
