@@ -8,7 +8,8 @@ namespace gh {
 	{
 	public:
 		twitch_user static from_attributes(std::string const& attr_list);
-		bool const is_moderator();
+		std::string const display_name() const;
+		bool const is_moderator() const;
 		~twitch_user();
 
 	private:

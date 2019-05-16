@@ -14,17 +14,49 @@
 #include "twitch_socket.h"
 #include "twitch_message.h"
 
-bool
-bot_command(std::string const& commandName, std::string const& command, std::string* args) {
-	size_t split = commandName.length() + 1;
-	if (command.substr(0, split) == commandName + " ")
-	{
-		*args = command.substr(split);
-		return true;
+using message_sender = std::function<int(std::string const&)>;
+using command = std::function<void(std::string const&, gh::twitch_user const&, message_sender)>;
+
+namespace {
+
+	std::optional<std::string>
+		bot_command(std::string const& commandName, std::string const& command) {
+		size_t split = commandName.length() + 1;
+		if (command.substr(0, split) == commandName + " ")
+		{
+			return command.substr(split);
+		}
+
+		return {};
+	};
+
+	void
+		command_random(std::string const& body, gh::twitch_user const& user, message_sender send_message) {
+		if (body == "!random")
+		{
+			send_message("@" + user.display_name() + " asked for a random number and rolled a 4");
+		}
 	}
 
-	return false;
-};
+	void
+		command_tnt(std::string const& body, gh::twitch_user const& user, message_sender send_message)
+	{
+		if (auto arguments = bot_command("!tnt", body))
+		{
+			send_message("gareth3Hype gareth3Hype Until next time " + *arguments + " gareth3Hype gareth3Hype");
+		}
+	}
+
+	void
+		command_welcome(std::string const& body, gh::twitch_user const& user, message_sender send_message)
+	{
+		if (auto arguments = bot_command("!welcome", body))
+		{
+			send_message("Welcome to the chat " + *arguments + " gareth3Hype");
+		}
+	}
+
+}
 
 int
 main()
@@ -87,7 +119,17 @@ main()
 			if (auto user = message->user)
 			{
 				std::string arguments;
+				std::vector<command> bot_commands;
+				bot_commands.push_back(command_random);
+				bot_commands.push_back(command_tnt);
+				bot_commands.push_back(command_welcome);
 
+				for (auto command_impl : bot_commands)
+				{
+					command_impl(message->body, *user, send_message);
+				}
+
+				 //TODO(gareth): Look at throttling in commands before pulling this one out.
 				if (message->body == "!horn" && user->is_moderator())
 				{
 					auto lastUsed = clock.now() - last_horn;
@@ -108,36 +150,22 @@ main()
 					}
 				}
 
-				if (user->is_moderator() && bot_command("!addcom", message->body, &arguments))
+				//TODO(gareth): Command registry with management functions exported as commands
+				if (auto arguments = bot_command("!addcom", message->body); user->is_moderator())
 				{
 					// !addcom youtube Follow Gareth on youtube...
 
-					int index = arguments.find_first_of(" ");
+					int index = arguments->find_first_of(" ");
 					if (index != std::string::npos) {
 						std::string command_to_add;
 						std::string reply;
 
-						command_to_add = arguments.substr(0, index);
-						reply = arguments.substr(index + 1);
+						command_to_add = arguments->substr(0, index);
+						reply = arguments->substr(index + 1);
 
 						repo.add_command(command_to_add, reply);
 						commands[command_to_add] = reply;
 					}
-				}
-
-				if (message->body == "!random")
-				{
-					send_message("@" + message->username + " asked for a random number and rolled a 4");
-				}
-
-				if (bot_command("!tnt", message->body, &arguments))
-				{
-					send_message("gareth3Hype gareth3Hype Until next time " + arguments + " gareth3Hype gareth3Hype");
-				}
-
-				if (bot_command("!welcome", message->body, &arguments))
-				{
-					send_message("Welcome to the chat " + arguments + " gareth3Hype");
 				}
 
 				if (!message->body.empty() && message->body.front() == '!')

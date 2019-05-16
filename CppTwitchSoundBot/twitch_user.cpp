@@ -35,15 +35,22 @@ namespace gh {
 		return twitch_user(std::move(attributes));
 	}
 
-	//TODO: Cleanup to include the broadcaster
-	bool const
-		twitch_user::is_moderator()
+	std::string const
+		twitch_user::display_name() const
 	{
 		if (auto it = attributes.find("display-name"); it != attributes.end())
 		{
-			if (it->second == "GarethHubball")
-				return true;
+			return it->second;
 		}
+		return "";
+	}
+
+	//TODO: Cleanup to include the broadcaster
+	bool const
+		twitch_user::is_moderator() const
+	{
+		if (display_name() == "GarethHubball")
+			return true;
 
 		if (auto it = attributes.find("user-type"); it != attributes.end())
 		{
