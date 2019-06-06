@@ -27,10 +27,16 @@
     <ClCompile Include="twitch_user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="twitch_socket.cpp">
+    <ClCompile Include="twitch_message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="twitch_message.cpp">
+    <ClCompile Include="command_registry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="horn_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="twitch_connection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,10 +50,22 @@
     <ClInclude Include="twitch_user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="twitch_socket.h">
+    <ClInclude Include="twitch_message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="twitch_message.h">
+    <ClInclude Include="command_registry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bot_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="command_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="horn_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="twitch_connection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="Conan-RootDirs">
+    <Conan-boost-Root>C:\.conan\3fc3f4\1</Conan-boost-Root>
+    <Conan-sqlite3-Root>$(USERPROFILE)\.conan\data\sqlite3\3.28.0\bincrafters\stable\package\4763a4d999037be19a0e0d9ea0598c6a21c0f98e</Conan-sqlite3-Root>
+    <Conan-zlib-Root>$(USERPROFILE)\.conan\data\zlib\1.2.11\conan\stable\package\3fb49604f9c2f729b85ba3115852006824e72cab</Conan-zlib-Root>
+    <Conan-bzip2-Root>$(USERPROFILE)\.conan\data\bzip2\1.0.6\conan\stable\package\d16a91eadaaf5829b928b12d2f836ff7680d3df5</Conan-bzip2-Root>
+  </PropertyGroup>
+    <PropertyGroup Label="ConanVariables">
+    <ConanBinaryDirectories>$(USERPROFILE)\.conan\data\bzip2\1.0.6\conan\stable\package\d16a91eadaaf5829b928b12d2f836ff7680d3df5\bin;;%(ConanBinaryDirectories)</ConanBinaryDirectories>
+    <ConanResourceDirectories>;%(ConanResourceDirectories)$(</ConanResourceDirectories>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LocalDebuggerEnvironment>PATH=%PATH%;$(USERPROFILE)\.conan\data\bzip2\1.0.6\conan\stable\package\d16a91eadaaf5829b928b12d2f836ff7680d3df5\bin;</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\.conan\3fc3f4\1\include;$(USERPROFILE)\.conan\data\sqlite3\3.28.0\bincrafters\stable\package\4763a4d999037be19a0e0d9ea0598c6a21c0f98e\include;$(USERPROFILE)\.conan\data\zlib\1.2.11\conan\stable\package\3fb49604f9c2f729b85ba3115852006824e72cab\include;$(USERPROFILE)\.conan\data\bzip2\1.0.6\conan\stable\package\d16a91eadaaf5829b928b12d2f836ff7680d3df5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_USE_STATIC_LIBS;BOOST_ALL_NO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\.conan\3fc3f4\1\lib;$(USERPROFILE)\.conan\data\sqlite3\3.28.0\bincrafters\stable\package\4763a4d999037be19a0e0d9ea0598c6a21c0f98e\lib;$(USERPROFILE)\.conan\data\zlib\1.2.11\conan\stable\package\3fb49604f9c2f729b85ba3115852006824e72cab\lib;$(USERPROFILE)\.conan\data\bzip2\1.0.6\conan\stable\package\d16a91eadaaf5829b928b12d2f836ff7680d3df5\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libboost_wave.lib;libboost_container.lib;libboost_contract.lib;libboost_exception.lib;libboost_graph.lib;libboost_iostreams.lib;libboost_locale.lib;libboost_log.lib;libboost_program_options.lib;libboost_random.lib;libboost_regex.lib;libboost_serialization.lib;libboost_wserialization.lib;libboost_coroutine.lib;libboost_fiber.lib;libboost_context.lib;libboost_timer.lib;libboost_thread.lib;libboost_chrono.lib;libboost_date_time.lib;libboost_atomic.lib;libboost_filesystem.lib;libboost_system.lib;libboost_type_erasure.lib;libboost_log_setup.lib;libboost_math_c99.lib;libboost_math_c99f.lib;libboost_math_c99l.lib;libboost_math_tr1.lib;libboost_math_tr1f.lib;libboost_math_tr1l.lib;libboost_stacktrace_noop.lib;libboost_stacktrace_windbg.lib;libboost_stacktrace_windbg_cached.lib;libboost_unit_test_framework.lib;bcrypt.lib;sqlite3.lib;zlib.lib;bz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\.conan\3fc3f4\1\include;$(USERPROFILE)\.conan\data\sqlite3\3.28.0\bincrafters\stable\package\4763a4d999037be19a0e0d9ea0598c6a21c0f98e\include;$(USERPROFILE)\.conan\data\zlib\1.2.11\conan\stable\package\3fb49604f9c2f729b85ba3115852006824e72cab\include;$(USERPROFILE)\.conan\data\bzip2\1.0.6\conan\stable\package\d16a91eadaaf5829b928b12d2f836ff7680d3df5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>C:\.conan\3fc3f4\1\include;$(USERPROFILE)\.conan\data\sqlite3\3.28.0\bincrafters\stable\package\4763a4d999037be19a0e0d9ea0598c6a21c0f98e\include;$(USERPROFILE)\.conan\data\zlib\1.2.11\conan\stable\package\3fb49604f9c2f729b85ba3115852006824e72cab\include;$(USERPROFILE)\.conan\data\bzip2\1.0.6\conan\stable\package\d16a91eadaaf5829b928b12d2f836ff7680d3df5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BOOST_USE_STATIC_LIBS;BOOST_ALL_NO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

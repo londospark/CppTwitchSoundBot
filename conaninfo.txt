@@ -1,0 +1,97 @@
+[settings]
+    arch=x86_64
+    build_type=Release
+    compiler=Visual Studio
+    compiler.runtime=MD
+    compiler.version=16
+    os=Windows
+
+[requires]
+    boost/1.Y.Z
+    sqlite3/3.Y.Z
+
+[options]
+
+
+[full_settings]
+    arch=x86_64
+    arch_build=x86_64
+    build_type=Release
+    compiler=Visual Studio
+    compiler.runtime=MD
+    compiler.version=16
+    os=Windows
+    os_build=Windows
+
+[full_requires]
+    boost/1.70.0@conan/stable:4d6b0a96fb1ef7b88e9a4ae010324f10dd9567e8
+    bzip2/1.0.6@conan/stable:d16a91eadaaf5829b928b12d2f836ff7680d3df5
+    sqlite3/3.28.0@bincrafters/stable:4763a4d999037be19a0e0d9ea0598c6a21c0f98e
+    zlib/1.2.11@conan/stable:3fb49604f9c2f729b85ba3115852006824e72cab
+
+[full_options]
+    boost:asio_no_deprecated=False
+    boost:bzip2=True
+    boost:error_code_header_only=False
+    boost:filesystem_no_deprecated=False
+    boost:header_only=False
+    boost:layout=system
+    boost:lzma=False
+    boost:magic_autolink=False
+    boost:namespace=boost
+    boost:namespace_alias=False
+    boost:python_executable=None
+    boost:python_version=None
+    boost:shared=False
+    boost:system_no_deprecated=False
+    boost:without_atomic=False
+    boost:without_chrono=False
+    boost:without_container=False
+    boost:without_context=False
+    boost:without_contract=False
+    boost:without_coroutine=False
+    boost:without_date_time=False
+    boost:without_exception=False
+    boost:without_fiber=False
+    boost:without_filesystem=False
+    boost:without_graph=False
+    boost:without_graph_parallel=False
+    boost:without_iostreams=False
+    boost:without_locale=False
+    boost:without_log=False
+    boost:without_math=False
+    boost:without_mpi=False
+    boost:without_program_options=False
+    boost:without_python=True
+    boost:without_random=False
+    boost:without_regex=False
+    boost:without_serialization=False
+    boost:without_stacktrace=False
+    boost:without_system=False
+    boost:without_test=False
+    boost:without_thread=False
+    boost:without_timer=False
+    boost:without_type_erasure=False
+    boost:without_wave=False
+    boost:zlib=True
+    boost:zstd=False
+    bzip2:build_executable=True
+    bzip2:shared=False
+    sqlite3:enable_column_metadata=False
+    sqlite3:enable_explain_comments=False
+    sqlite3:enable_fts3=False
+    sqlite3:enable_fts4=False
+    sqlite3:enable_fts5=False
+    sqlite3:enable_json1=False
+    sqlite3:enable_rtree=False
+    sqlite3:omit_load_extension=False
+    sqlite3:shared=False
+    sqlite3:threadsafe=1
+    zlib:minizip=False
+    zlib:shared=False
+
+[recipe_hash]
+
+
+[env]
+

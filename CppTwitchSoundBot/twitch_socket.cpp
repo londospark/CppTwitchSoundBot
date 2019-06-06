@@ -9,13 +9,12 @@
 #include "twitch_socket.h"
 
 #pragma comment(lib, "Ws2_32.lib")
-#pragma comment(lib, "Winmm.lib")
 
 namespace gh
 {
     int twitch_socket::send(const std::string &information)
     {
-        return ::send(this->Connection, information.c_str(), static_cast<int>(information.length()), NULL);
+        return ::send(this->connection, information.c_str(), static_cast<int>(information.length()), NULL);
     }
 
 	std::function<int(const std::string&)> twitch_socket::sendToChannel(const std::string& channel)
@@ -27,22 +26,27 @@ namespace gh
     
     std::string twitch_socket::receive()
     {
-        int bytesReceived = recv(this->Connection, buffer.data(), BufferLength, NULL);
-        if (bytesReceived < 0)
-        {
-            return "";
-        }
-        
-        return std::string(buffer.begin(), buffer.begin() + bytesReceived);
+		int bytesReceived;
+		std::string reply;
+		do {
+			bytesReceived = recv(this->connection, buffer.data(), BufferLength, NULL);
+			if (bytesReceived < 0)
+			{
+				return "";
+			}
+
+			reply += std::string(buffer.begin(), buffer.begin() + bytesReceived);
+		} while (bytesReceived == 512);
+        return reply;
     }
     
     twitch_socket::twitch_socket(std::string username, std::string password)
     {
-		this->Connection = INVALID_SOCKET;
+		this->connection = INVALID_SOCKET;
         this->username = username;
         this->password = password;
     }
-    
+
     int twitch_socket::connect()
     {
         WSADATA wsaData;
@@ -65,8 +69,8 @@ namespace gh
             std::cout << "getaddrinfo failed: <<RETURN CODE CAN BE PASSED>>" << std::endl;
         }
         
-        this->Connection = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
-        if (this->Connection == INVALID_SOCKET)
+        this->connection = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
+        if (this->connection == INVALID_SOCKET)
         {
             std::cout << "Error at socket(): " << WSAGetLastError() << std::endl;
             freeaddrinfo(result);
@@ -74,17 +78,17 @@ namespace gh
             return 1;
         }
         
-        if (::connect(this->Connection, result->ai_addr, static_cast<int>(result->ai_addrlen)) == SOCKET_ERROR)
+        if (::connect(this->connection, result->ai_addr, static_cast<int>(result->ai_addrlen)) == SOCKET_ERROR)
         {
             std::cout << "[ERR] Connected with an error" << std::endl;
-            closesocket(this->Connection);
-            this->Connection = INVALID_SOCKET;
+            closesocket(this->connection);
+            this->connection = INVALID_SOCKET;
             return 1;
         }
         
         freeaddrinfo(result);
         
-        if (this->Connection == INVALID_SOCKET)
+        if (this->connection == INVALID_SOCKET)
         {
             std::cout << "Cannot connect to server" << std::endl;
             WSACleanup();

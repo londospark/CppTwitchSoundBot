@@ -1,7 +1,8 @@
 #pragma once
-#include <Winsock2.h>
+
+#include <boost/asio.hpp>
+#include <mmsystem.h>
 #include <Windows.h>
-#include <ws2tcpip.h>
 #include <boost/spirit/include/qi.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/fusion/sequence/intrinsic/at_c.hpp>
@@ -13,4 +14,5 @@
 #include <chrono>
 #include <map>
 #include <sstream>
+#include <array>
 #include <sqlite3.h>

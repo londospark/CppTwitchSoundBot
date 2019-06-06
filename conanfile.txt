@@ -1,0 +1,6 @@
+[requires]
+boost/1.70.0@conan/stable
+sqlite3/3.28.0@bincrafters/stable
+
+[generators]
+visual_studio

@@ -2,7 +2,7 @@
 #pragma once
 
 namespace gh {
-
+	
 	class command_repository
 	{
 	public:
