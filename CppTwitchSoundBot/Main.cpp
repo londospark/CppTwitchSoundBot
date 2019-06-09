@@ -1,6 +1,5 @@
 #include "pch.hpp"
 
-#include <Windows.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -18,8 +17,6 @@
 #include "command_definitions.h"
 #include "horn_command.h"
 #include "twitch_connection.h"
-
-#pragma comment(lib, "Winmm.lib")
 
 int
 main()

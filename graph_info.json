@@ -196,6 +196,42 @@
    "False"
   ], 
   [
+   "flac:shared", 
+   "False"
+  ], 
+  [
+   "flac:use_asm", 
+   "False"
+  ], 
+  [
+   "ogg:shared", 
+   "False"
+  ], 
+  [
+   "openal:shared", 
+   "False"
+  ], 
+  [
+   "sfml:audio", 
+   "True"
+  ], 
+  [
+   "sfml:graphics", 
+   "False"
+  ], 
+  [
+   "sfml:network", 
+   "False"
+  ], 
+  [
+   "sfml:shared", 
+   "False"
+  ], 
+  [
+   "sfml:window", 
+   "False"
+  ], 
+  [
    "sqlite3:enable_column_metadata", 
    "False"
   ], 
@@ -234,6 +270,10 @@
   [
    "sqlite3:threadsafe", 
    "1"
+  ], 
+  [
+   "vorbis:shared", 
+   "False"
   ], 
   [
    "zlib:minizip", 

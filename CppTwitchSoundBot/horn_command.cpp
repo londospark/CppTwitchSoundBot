@@ -7,6 +7,8 @@ namespace gh {
 		using namespace std::placeholders;
 		cmd = std::bind(&horn_command::cmd_impl, this, _1, _2, _3);
 		last_horn = clock.now() - std::chrono::seconds(cooldown);
+		sound_buffer.loadFromFile("horn.wav");
+		sound.setBuffer(sound_buffer);
 	}
 
 	void horn_command::cmd_impl(std::string const& body, gh::twitch_user const& user, message_sender send_message) {
@@ -16,7 +18,7 @@ namespace gh {
 			auto lastUsed = clock.now() - last_horn;
 			if (lastUsed >= std::chrono::seconds(cooldown))
 			{
-				PlaySound("horn.wav", NULL, SND_FILENAME);
+				sound.play();
 				last_horn = clock.now();
 			}
 			else

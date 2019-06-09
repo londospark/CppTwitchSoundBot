@@ -1,8 +1,7 @@
 #pragma once
 
+#include <SFML/Audio.hpp>
 #include <boost/asio.hpp>
-#include <mmsystem.h>
-#include <Windows.h>
 #include <boost/spirit/include/qi.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/fusion/sequence/intrinsic/at_c.hpp>

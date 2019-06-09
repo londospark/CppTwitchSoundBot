@@ -1,6 +1,10 @@
 [requires]
 boost/1.70.0@conan/stable
 sqlite3/3.28.0@bincrafters/stable
+sfml/2.5.1@bincrafters/stable
+
+[options]
+sfml:audio=True
 
 [generators]
 visual_studio
