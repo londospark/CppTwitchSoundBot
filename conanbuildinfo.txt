@@ -1,43 +1,44 @@
 [includedirs]
-C:/.conan/3fc3f4/1/include
-C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4763a4d999037be19a0e0d9ea0598c6a21c0f98e/include
-C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/aea6f3fc5efc08ad93c7ce16aa366bf4c976f844/include
-C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
-C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/include
-C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
-C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/include/AL
-C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/include
-C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/include
-C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
+C:/.conan/257067/1/include
+C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4c6583bf4ac19d53537f526b3a3c488ef2646143/include
+C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/b5443cbd413c6bb772037c47bf2e7362db3abc02/include
+C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/include
+C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include/AL
+C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/include
+C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/include
+C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 
 [libdirs]
-C:/.conan/3fc3f4/1/lib
-C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4763a4d999037be19a0e0d9ea0598c6a21c0f98e/lib
-C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/aea6f3fc5efc08ad93c7ce16aa366bf4c976f844/lib
-C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
-C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/lib
-C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
-C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/lib
-C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/lib
-C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
+C:/.conan/257067/1/lib
+C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4c6583bf4ac19d53537f526b3a3c488ef2646143/lib
+C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/b5443cbd413c6bb772037c47bf2e7362db3abc02/lib
+C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
+C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib
+C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
+C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/lib
+C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/lib
+C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 
 [bindirs]
-C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/aea6f3fc5efc08ad93c7ce16aa366bf4c976f844/bin
-C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/bin
+C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/b5443cbd413c6bb772037c47bf2e7362db3abc02/bin
+C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/bin
+C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/bin
 
 [resdirs]
 
 
 [builddirs]
-C:/.conan/3fc3f4/1/
-C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4763a4d999037be19a0e0d9ea0598c6a21c0f98e/
-C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/aea6f3fc5efc08ad93c7ce16aa366bf4c976f844/
-C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/
-C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/
-C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/
-C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/
-C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/
-C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/
+C:/.conan/257067/1/
+C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4c6583bf4ac19d53537f526b3a3c488ef2646143/
+C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/b5443cbd413c6bb772037c47bf2e7362db3abc02/
+C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/
+C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/
+C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/
+C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/
+C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/
+C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/
 
 [libs]
 libboost_wave
@@ -77,9 +78,9 @@ libboost_stacktrace_windbg_cached
 libboost_unit_test_framework
 bcrypt
 sqlite3
-sfml-audio-s
-sfml-main
-sfml-system-s
+sfml-audio-s-d
+sfml-main-d
+sfml-system-s-d
 zlib
 bz2
 OpenAL32
@@ -118,10 +119,10 @@ BOOST_ALL_NO_LIB
 
 
 [includedirs_boost]
-C:/.conan/3fc3f4/1/include
+C:/.conan/257067/1/include
 
 [libdirs_boost]
-C:/.conan/3fc3f4/1/lib
+C:/.conan/257067/1/lib
 
 [bindirs_boost]
 
@@ -130,7 +131,7 @@ C:/.conan/3fc3f4/1/lib
 
 
 [builddirs_boost]
-C:/.conan/3fc3f4/1/
+C:/.conan/257067/1/
 
 [libs_boost]
 libboost_wave
@@ -193,14 +194,14 @@ BOOST_ALL_NO_LIB
 
 
 [rootpath_boost]
-C:/.conan/3fc3f4/1
+C:/.conan/257067/1
 
 
 [includedirs_sqlite3]
-C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4763a4d999037be19a0e0d9ea0598c6a21c0f98e/include
+C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4c6583bf4ac19d53537f526b3a3c488ef2646143/include
 
 [libdirs_sqlite3]
-C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4763a4d999037be19a0e0d9ea0598c6a21c0f98e/lib
+C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4c6583bf4ac19d53537f526b3a3c488ef2646143/lib
 
 [bindirs_sqlite3]
 
@@ -209,7 +210,7 @@ C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4763a4d
 
 
 [builddirs_sqlite3]
-C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4763a4d999037be19a0e0d9ea0598c6a21c0f98e/
+C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4c6583bf4ac19d53537f526b3a3c488ef2646143/
 
 [libs_sqlite3]
 sqlite3
@@ -236,28 +237,28 @@ sqlite3
 
 
 [rootpath_sqlite3]
-C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4763a4d999037be19a0e0d9ea0598c6a21c0f98e
+C:/Users/Streaming/.conan/data/sqlite3/3.28.0/bincrafters/stable/package/4c6583bf4ac19d53537f526b3a3c488ef2646143
 
 
 [includedirs_sfml]
-C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/aea6f3fc5efc08ad93c7ce16aa366bf4c976f844/include
+C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/b5443cbd413c6bb772037c47bf2e7362db3abc02/include
 
 [libdirs_sfml]
-C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/aea6f3fc5efc08ad93c7ce16aa366bf4c976f844/lib
+C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/b5443cbd413c6bb772037c47bf2e7362db3abc02/lib
 
 [bindirs_sfml]
-C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/aea6f3fc5efc08ad93c7ce16aa366bf4c976f844/bin
+C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/b5443cbd413c6bb772037c47bf2e7362db3abc02/bin
 
 [resdirs_sfml]
 
 
 [builddirs_sfml]
-C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/aea6f3fc5efc08ad93c7ce16aa366bf4c976f844/
+C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/b5443cbd413c6bb772037c47bf2e7362db3abc02/
 
 [libs_sfml]
-sfml-audio-s
-sfml-main
-sfml-system-s
+sfml-audio-s-d
+sfml-main-d
+sfml-system-s-d
 winmm
 
 [defines_sfml]
@@ -282,14 +283,14 @@ SFML_STATIC
 
 
 [rootpath_sfml]
-C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/aea6f3fc5efc08ad93c7ce16aa366bf4c976f844
+C:/Users/Streaming/.conan/data/sfml/2.5.1/bincrafters/stable/package/b5443cbd413c6bb772037c47bf2e7362db3abc02
 
 
 [includedirs_zlib]
-C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
+C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 
 [libdirs_zlib]
-C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
+C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 
 [bindirs_zlib]
 
@@ -298,7 +299,7 @@ C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/3fb49604f9c2f729
 
 
 [builddirs_zlib]
-C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/
+C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/
 
 [libs_zlib]
 zlib
@@ -325,23 +326,23 @@ zlib
 
 
 [rootpath_zlib]
-C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab
+C:/Users/Streaming/.conan/data/zlib/1.2.11/conan/stable/package/d057732059ea44a47760900cb5e4855d2bea8714
 
 
 [includedirs_bzip2]
-C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/include
+C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/include
 
 [libdirs_bzip2]
-C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/lib
+C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/lib
 
 [bindirs_bzip2]
-C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/bin
+C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/bin
 
 [resdirs_bzip2]
 
 
 [builddirs_bzip2]
-C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/
+C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/589a23dff5fdb23a7fb851223eb766480ead0a9a/
 
 [libs_bzip2]
 bz2
@@ -368,15 +369,15 @@ bz2
 
 
 [rootpath_bzip2]
-C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5
+C:/Users/Streaming/.conan/data/bzip2/1.0.6/conan/stable/package/589a23dff5fdb23a7fb851223eb766480ead0a9a
 
 
 [includedirs_openal]
-C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
-C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/include/AL
+C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include
+C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include/AL
 
 [libdirs_openal]
-C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
+C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 
 [bindirs_openal]
 
@@ -385,7 +386,7 @@ C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604
 
 
 [builddirs_openal]
-C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/
+C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/
 
 [libs_openal]
 OpenAL32
@@ -413,14 +414,14 @@ AL_LIBTYPE_STATIC
 
 
 [rootpath_openal]
-C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab
+C:/Users/Streaming/.conan/data/openal/1.19.0/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714
 
 
 [includedirs_flac]
-C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/include
+C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/include
 
 [libdirs_flac]
-C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/lib
+C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/lib
 
 [bindirs_flac]
 
@@ -429,7 +430,7 @@ C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/becff00909f
 
 
 [builddirs_flac]
-C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/
+C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/
 
 [libs_flac]
 flac
@@ -457,23 +458,23 @@ FLAC__NO_DLL
 
 
 [rootpath_flac]
-C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540
+C:/Users/Streaming/.conan/data/flac/1.3.2/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47
 
 
 [includedirs_vorbis]
-C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/include
+C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/include
 
 [libdirs_vorbis]
-C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/lib
+C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/lib
 
 [bindirs_vorbis]
-
+C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/bin
 
 [resdirs_vorbis]
 
 
 [builddirs_vorbis]
-C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540/
+C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47/
 
 [libs_vorbis]
 vorbisfile
@@ -502,14 +503,14 @@ vorbis
 
 
 [rootpath_vorbis]
-C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/becff00909fb3d957c6b4ca60fa64d4e6a32a540
+C:/Users/Streaming/.conan/data/vorbis/1.3.6/bincrafters/stable/package/b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47
 
 
 [includedirs_ogg]
-C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
+C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/include
 
 [libdirs_ogg]
-C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
+C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/lib
 
 [bindirs_ogg]
 
@@ -518,7 +519,7 @@ C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/3fb49604f9c2
 
 
 [builddirs_ogg]
-C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab/
+C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714/
 
 [libs_ogg]
 ogg
@@ -545,7 +546,7 @@ ogg
 
 
 [rootpath_ogg]
-C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/3fb49604f9c2f729b85ba3115852006824e72cab
+C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/d057732059ea44a47760900cb5e4855d2bea8714
 
 
 [USER_bzip2]
@@ -558,7 +559,7 @@ C:/Users/Streaming/.conan/data/ogg/1.3.3/bincrafters/stable/package/3fb49604f9c2
 [USER_ogg]
 [USER_boost]
 [ENV_boost]
-BOOST_ROOT=C:\.conan\3fc3f4\1
+BOOST_ROOT=C:\.conan\257067\1
 [ENV_sqlite3]
 [ENV_sfml]
 [ENV_zlib]

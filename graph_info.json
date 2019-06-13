@@ -1,5 +1,5 @@
 {
- "profile": "[settings]\narch=x86_64\narch_build=x86_64\nbuild_type=Release\ncompiler=Visual Studio\ncompiler.runtime=MD\ncompiler.version=16\nos=Windows\nos_build=Windows\n[options]\n[build_requires]\n[env]\n", 
+ "profile": "[settings]\narch=x86_64\narch_build=x86_64\nbuild_type=Debug\ncompiler=Visual Studio\ncompiler.runtime=MDd\ncompiler.version=16\nos=Windows\nos_build=Windows\n[options]\n[build_requires]\n[env]\n", 
  "root": {
   "version": null, 
   "name": null, 

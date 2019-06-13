@@ -1,8 +1,8 @@
 [settings]
     arch=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=Visual Studio
-    compiler.runtime=MD
+    compiler.runtime=MDd
     compiler.version=16
     os=Windows
 
@@ -17,23 +17,23 @@
 [full_settings]
     arch=x86_64
     arch_build=x86_64
-    build_type=Release
+    build_type=Debug
     compiler=Visual Studio
-    compiler.runtime=MD
+    compiler.runtime=MDd
     compiler.version=16
     os=Windows
     os_build=Windows
 
 [full_requires]
-    boost/1.70.0@conan/stable:4d6b0a96fb1ef7b88e9a4ae010324f10dd9567e8
-    bzip2/1.0.6@conan/stable:d16a91eadaaf5829b928b12d2f836ff7680d3df5
-    flac/1.3.2@bincrafters/stable:becff00909fb3d957c6b4ca60fa64d4e6a32a540
-    ogg/1.3.3@bincrafters/stable:3fb49604f9c2f729b85ba3115852006824e72cab
-    openal/1.19.0@bincrafters/stable:3fb49604f9c2f729b85ba3115852006824e72cab
-    sfml/2.5.1@bincrafters/stable:aea6f3fc5efc08ad93c7ce16aa366bf4c976f844
-    sqlite3/3.28.0@bincrafters/stable:4763a4d999037be19a0e0d9ea0598c6a21c0f98e
-    vorbis/1.3.6@bincrafters/stable:becff00909fb3d957c6b4ca60fa64d4e6a32a540
-    zlib/1.2.11@conan/stable:3fb49604f9c2f729b85ba3115852006824e72cab
+    boost/1.70.0@conan/stable:bf47276734f774d697dd8719b72706277f66bfa0
+    bzip2/1.0.6@conan/stable:589a23dff5fdb23a7fb851223eb766480ead0a9a
+    flac/1.3.2@bincrafters/stable:b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47
+    ogg/1.3.3@bincrafters/stable:d057732059ea44a47760900cb5e4855d2bea8714
+    openal/1.19.0@bincrafters/stable:d057732059ea44a47760900cb5e4855d2bea8714
+    sfml/2.5.1@bincrafters/stable:b5443cbd413c6bb772037c47bf2e7362db3abc02
+    sqlite3/3.28.0@bincrafters/stable:4c6583bf4ac19d53537f526b3a3c488ef2646143
+    vorbis/1.3.6@bincrafters/stable:b8a7c0e3d5f7f2dd0a4cf862cb60ff9f1b73be47
+    zlib/1.2.11@conan/stable:d057732059ea44a47760900cb5e4855d2bea8714
 
 [full_options]
     boost:asio_no_deprecated=False
