@@ -24,9 +24,9 @@ conan_cmake_run(CONANFILE conanfile.txt
                 BUILD missing)
 
 file(GLOB bot_SRC
-    "CppTwitchSoundBot/*.hpp"
-    "CppTwitchSoundBot/*.h"
-    "CppTwitchSoundBot/*.cpp"
+    "src/*.hpp"
+    "src/*.h"
+    "src/*.cpp"
 )
 
 add_executable(hb ${bot_SRC})
