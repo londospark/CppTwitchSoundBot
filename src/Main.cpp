@@ -75,9 +75,10 @@ main()
 				}
 			}
 		}
-		else if (reply == "PING :tmi.twitch.tv\r\n")
+		else if (reply.find("PING :tmi.twitch.tv") != std::string::npos)
 		{
-			send_message("PONG :tmi.twitch.tv");
+			twitch.send("PONG :tmi.twitch.tv\r\n");
+			send_message("Received ping from twitch");
 		}
 		else {
 			std::cout << "[UNRECOGNISED]: " << reply << std::endl;
