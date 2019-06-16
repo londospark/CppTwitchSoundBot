@@ -45,7 +45,7 @@ namespace gh {
 		return "";
 	}
 
-	//TODO: Cleanup to include the broadcaster
+	//TODO(gareth): Cleanup to include the broadcaster
 	bool const
 		twitch_user::is_moderator() const
 	{

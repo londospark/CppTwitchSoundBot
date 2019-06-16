@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 assets/supersecret.txt
+assets/config.properties
 supersecret.txt
 
 # User-specific files

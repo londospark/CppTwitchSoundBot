@@ -21,24 +21,29 @@
 int
 main()
 {
-	std::ifstream file("supersecret.txt");
-	std::string oauth_token;
+	boost::program_options::options_description desc;
+	desc.add_options()
+		("authentication.username", "username of the bot")
+		("authentication.oauth_token", "Your bot's OAuth Token (starts with oauth:)")
+		("settings.channel", "Channel to join (your username)");
+	boost::program_options::variables_map vm;
+	boost::program_options::store(boost::program_options::parse_config_file("config.properties", desc), vm);
+	boost::program_options::notify(vm);
 
-	if (file.is_open())
-	{
-		std::getline(file, oauth_token, '\n');
-		file.close();
-	}
+	auto username = vm.at("authentication.username").as<std::string>();
+	auto oauth_token = vm.at("authentication.oauth_token").as<std::string>();
+	auto channel = vm.at("settings.channel").as<std::string>();
+
 	boost::asio::io_context io_context;
 	gh::twitch_connection twitch(io_context);
-	twitch.authenticate("hubballbot", oauth_token);
+	twitch.authenticate(username, oauth_token);
 
 	std::cout << twitch.receive() << std::endl;
 
-	twitch.send("JOIN #garethhubball\r\n");
+	twitch.send("JOIN #" + channel + "\r\n");
 	twitch.send("CAP REQ :twitch.tv/tags\r\n");
 
-	auto const send_message = twitch.sendToChannel("garethhubball");
+	auto const send_message = twitch.sendToChannel(channel);
 	
 	/*if (result != 0)
 	{

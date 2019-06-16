@@ -1,0 +1,6 @@
+[authentication]
+username=bot_username
+oauth_token=oauth:yourtoken
+
+[settings]
+channel=your_channel
