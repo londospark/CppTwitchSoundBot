@@ -1,5 +1,3 @@
-#include "pch.hpp"
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -12,38 +10,26 @@
 #include <optional>
 
 #include "twitch_message.h"
-#include "bot_command.h"
 #include "command_registry.h"
 #include "command_definitions.h"
 #include "horn_command.h"
 #include "twitch_connection.h"
+#include "options.h"
 
-int
-main()
+int main()
 {
-	boost::program_options::options_description desc;
-	desc.add_options()
-		("authentication.username", "username of the bot")
-		("authentication.oauth_token", "Your bot's OAuth Token (starts with oauth:)")
-		("settings.channel", "Channel to join (your username)");
-	boost::program_options::variables_map vm;
-	boost::program_options::store(boost::program_options::parse_config_file("config.properties", desc), vm);
-	boost::program_options::notify(vm);
-
-	auto username = vm.at("authentication.username").as<std::string>();
-	auto oauth_token = vm.at("authentication.oauth_token").as<std::string>();
-	auto channel = vm.at("settings.channel").as<std::string>();
+	auto options = gh::options::from_file("config.properties");
 
 	boost::asio::io_context io_context;
 	gh::twitch_connection twitch(io_context);
-	twitch.authenticate(username, oauth_token);
+	twitch.authenticate(options.username, options.oauth_token);
 
 	std::cout << twitch.receive() << std::endl;
 
-	twitch.send("JOIN #" + channel + "\r\n");
+	twitch.send("JOIN #" + options.channel + "\r\n");
 	twitch.send("CAP REQ :twitch.tv/tags\r\n");
 
-	auto const send_message = twitch.sendToChannel(channel);
+	auto const send_message = twitch.sendToChannel(options.channel);
 	
 	/*if (result != 0)
 	{

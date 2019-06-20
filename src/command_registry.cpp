@@ -1,12 +1,24 @@
-#include "pch.hpp"
+#include <iostream>
+#include <optional>
+
 #include "command_registry.h"
-#include "bot_command.h"
 
 namespace gh {
 
 	struct parsed_command {
 		std::string name;
 		std::optional<std::string> args;
+	};
+
+	std::optional<std::string> const
+		arguments_for_command(std::string const& commandName, std::string const& command) {
+		size_t split = commandName.length() + 1;
+		if (command.substr(0, split) == commandName + " ")
+		{
+			return command.substr(split);
+		}
+
+		return std::nullopt;
 	};
 
 	std::optional<parsed_command> const
@@ -48,7 +60,7 @@ namespace gh {
 
 	void command_registry::add_command_impl(std::string const& body, gh::twitch_user const& user, message_sender send_message)
 	{
-		if (auto arguments = arguments_for_command("!addcom", body); user.is_moderator())
+		if (auto arguments = gh::arguments_for_command("!addcom", body); user.is_moderator())
 		{
 			// !addcom youtube Follow Gareth on youtube...
 

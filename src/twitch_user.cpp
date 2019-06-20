@@ -1,4 +1,3 @@
-#include "pch.hpp"
 #include "twitch_user.h"
 
 namespace qi = boost::spirit::qi;

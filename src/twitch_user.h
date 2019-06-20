@@ -3,7 +3,8 @@
 #include <string>
 #include <map>
 
-namespace gh {
+namespace gh
+{
 	class twitch_user
 	{
 	public:

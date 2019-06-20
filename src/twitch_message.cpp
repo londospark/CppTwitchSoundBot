@@ -1,8 +1,7 @@
-#include "pch.hpp"
-
 #include <boost/spirit/include/qi.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/fusion/sequence/intrinsic/at_c.hpp>
+
 #include "twitch_message.h"
 
 namespace qi = boost::spirit::qi;

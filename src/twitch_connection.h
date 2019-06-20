@@ -1,6 +1,7 @@
-#include <boost/asio.hpp>
-
 #pragma once
+
+#include <boost/asio/io_context.hpp>
+#include <boost/asio/ip/tcp.hpp>
 
 namespace gh
 {

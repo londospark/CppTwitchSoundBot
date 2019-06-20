@@ -1,4 +1,5 @@
 #pragma once
+
 #include "twitch_user.h"
 #include "command_repository.h"
 #include "command_definitions.h"

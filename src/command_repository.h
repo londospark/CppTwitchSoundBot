@@ -1,5 +1,6 @@
-#include <sqlite3.h>
 #pragma once
+
+#include <sqlite3.h>
 
 namespace gh {
 	

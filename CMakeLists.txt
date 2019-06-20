@@ -23,18 +23,14 @@ conan_cmake_run(CONANFILE conanfile.txt
                 BUILD missing)
 
 file(GLOB bot_SRC
-    "src/*.hpp"
     "src/*.h"
-    "src/*.cpp"
-)
+    "src/*.cpp")
 
 add_executable(hb ${bot_SRC})
 target_link_libraries(hb ${CONAN_LIBS})
 cotire(hb)
 
-file(GLOB bot_assets
-	${CMAKE_CURRENT_SOURCE_DIR}/assets/*.*
-)
+file(GLOB bot_assets ${CMAKE_CURRENT_SOURCE_DIR}/assets/*.*)
 
 file(COPY ${bot_assets}
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin)

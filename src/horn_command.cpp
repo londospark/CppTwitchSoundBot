@@ -1,5 +1,5 @@
-#include "pch.hpp"
 #include "horn_command.h"
+
 namespace gh {
 
 	horn_command::horn_command(int cooldown) : cooldown(cooldown)

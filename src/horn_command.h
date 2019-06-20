@@ -1,9 +1,11 @@
 #pragma once
-#include "command_definitions.h"
 
 #include <SFML/Audio.hpp>
 
-namespace gh {
+#include "command_definitions.h"
+
+namespace gh
+{
 	class horn_command
 	{
 	public:

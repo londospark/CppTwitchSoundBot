@@ -1,10 +1,13 @@
 #pragma once
+
 #include <string>
 #include <map>
 #include <optional>
+
 #include "twitch_user.h"
 
-namespace gh {
+namespace gh
+{
 	struct twitch_message
 	{
 		std::optional<twitch_user> user;
