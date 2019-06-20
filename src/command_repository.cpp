@@ -54,8 +54,8 @@ namespace gh {
 			&add_command_statement,
 			NULL);
 
-		sqlite3_bind_text(add_command_statement, 1, name.c_str(), name.length(), SQLITE_TRANSIENT);
-		sqlite3_bind_text(add_command_statement, 2, reply.c_str(), reply.length(), SQLITE_TRANSIENT);
+		sqlite3_bind_text(add_command_statement, 1, name.c_str(), static_cast<int>(name.length()), SQLITE_TRANSIENT);
+		sqlite3_bind_text(add_command_statement, 2, reply.c_str(), static_cast<int>(reply.length()), SQLITE_TRANSIENT);
 
 		sqlite3_step(add_command_statement);
 		sqlite3_finalize(add_command_statement);

@@ -17,24 +17,28 @@ namespace gh {
 
 		auto stripped = raw_command.substr(1);
 
-		if (int index = stripped.find_first_of(" ");
+		if (size_t index = stripped.find_first_of(" ");
 			index != std::string::npos)
 		{
 			return parsed_command {
-				.name = stripped.substr(0, index),
-				.args = stripped.substr(static_cast<size_t>(index) + 1)
+				stripped.substr(0, index),
+				stripped.substr(index + 1)
 			};
 		}
 
-		return parsed_command { .name = stripped, .args = std::nullopt };
+		return parsed_command { stripped, std::nullopt };
 	}
 
 	command_registry::command_registry(std::string const& filename)
 		: repo(command_repository(filename))
 	{
-		using namespace std::placeholders;
-		add_command = std::bind(&command_registry::add_command_impl, this, _1, _2, _3);
-		execute_simple_command = std::bind(&command_registry::execute_simple_command_impl, this, _1, _2, _3);
+		add_command = [this](std::string const& body, gh::twitch_user const& user, message_sender send_message) {
+			add_command_impl(body, user, send_message);
+		};
+
+		execute_simple_command = [this](std::string const& body, gh::twitch_user const& user, message_sender send_message) {
+			execute_simple_command_impl(body, user, send_message);
+		};
 	}
 
 	void command_registry::load_commands()
@@ -78,12 +82,12 @@ namespace gh {
 		for (auto replacement : replacements)
 		{
 			auto token = "{" + replacement.first + "}";
-			if (int pos = command_template.find(token); pos != std::string::npos)
+			if (size_t pos = command_template.find(token); pos != std::string::npos)
 			{
 				toReturn =
 					command_template.substr(0, pos)
 					+ replacement.second
-					+ command_template.substr(static_cast<size_t>(pos) + token.length());
+					+ command_template.substr(pos + token.length());
 			}
 		}
 		return toReturn;
