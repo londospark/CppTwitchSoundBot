@@ -15,6 +15,7 @@
 #include "horn_command.h"
 #include "twitch_connection.h"
 #include "options.h"
+#include "message_handler.h"
 
 int main()
 {
@@ -49,32 +50,10 @@ int main()
 
 	send_message("HubballBot is now online");
 
-	while (true)
-	{
-		std::string reply = twitch.receive();
-		if (auto message = gh::twitch_message::parse(reply))
-		{
-			std::cout << reply << std::flush;
-			std::cout << "User: " << message->username << std::endl;
-			std::cout << "channel: " << message->channel << " message: " << message->body << std::endl;
+	gh::message_handler handler(bot_commands, send_message, twitch);
+	twitch.async_receive(handler);
 
-			if (auto user = message->user)
-			{
-				for (auto command_impl : bot_commands)
-				{
-					command_impl(message->body, *user, send_message);
-				}
-			}
-		}
-		else if (reply.find("PING :tmi.twitch.tv") != std::string::npos)
-		{
-			twitch.send("PONG :tmi.twitch.tv\r\n");
-			send_message("Received ping from twitch");
-		}
-		else {
-			std::cout << "[UNRECOGNISED]: " << reply << std::endl;
-		}
-	}
+	io_context.run();
 
 	return 0;
 }
