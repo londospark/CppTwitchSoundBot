@@ -26,7 +26,7 @@ file(GLOB bot_SRC
     "src/*.h"
     "src/*.cpp")
 
-add_executable(hb ${bot_SRC})
+add_executable(hb WIN32 ${bot_SRC})
 target_link_libraries(hb ${CONAN_LIBS})
 cotire(hb)
 

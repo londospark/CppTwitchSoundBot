@@ -39,15 +39,19 @@ namespace gh {
 		return std::string(data.begin(), data.end());
 	}
 
-	void twitch_connection::async_receive(std::function<void(std::string)> handler)
+	void twitch_connection::async_receive()
 	{
 		std::cout << "async_receive\n";
+		/*socket.async_read_some(boost::asio::buffer(buffer), [&](const boost::system::error_code& e, std::size_t size) {
+				std::cout << "handler\n";
+				async_receive();
+			});*/
 		socket.async_read_some(boost::asio::buffer(buffer),
 			[=](const boost::system::error_code& e, std::size_t size) {
 				std::cout << "handler\n";
 				std::string message(buffer.begin(), buffer.end());
 				handler(message);
-				async_receive(handler);
+				async_receive();
 			});
 		std::cout << "[END] async_receive\n";
 	}

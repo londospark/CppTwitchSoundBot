@@ -8,6 +8,8 @@
 #include <sstream>
 #include <codecvt>
 #include <optional>
+#include <wx/wx.h>
+#include <boost/thread.hpp>
 
 #include "twitch_message.h"
 #include "command_registry.h"
@@ -17,12 +19,43 @@
 #include "options.h"
 #include "message_handler.h"
 
-int main()
+
+class HubballBot : public wxApp
 {
-	auto options = gh::options::from_file("config.properties");
+public:
+	virtual bool OnInit();
+	virtual int OnExit();
+
+	HubballBot();
 
 	boost::asio::io_context io_context;
-	gh::twitch_connection twitch(io_context);
+	boost::thread t;
+	gh::twitch_connection twitch;
+	std::vector<gh::command> bot_commands;
+	std::function<size_t(const std::string&)> send_message;
+	gh::command_registry registry;
+	gh::horn_command horn;
+};
+
+class MainFrame : public wxFrame
+{
+public:
+	MainFrame();
+};
+
+wxIMPLEMENT_APP(HubballBot);
+
+HubballBot::HubballBot() : twitch(gh::twitch_connection(io_context)), registry(gh::command_registry("hubballbot.db")), horn(gh::horn_command(30))
+{
+}
+
+bool HubballBot::OnInit()
+{
+	MainFrame* frame = new MainFrame();
+	frame->Show();
+
+	auto options = gh::options::from_file("config.properties");
+
 	twitch.authenticate(options.username, options.oauth_token);
 
 	std::cout << twitch.receive() << std::endl;
@@ -30,30 +63,39 @@ int main()
 	twitch.send("JOIN #" + options.channel + "\r\n");
 	twitch.send("CAP REQ :twitch.tv/tags\r\n");
 
-	auto const send_message = twitch.sendToChannel(options.channel);
-	
+	send_message = twitch.sendToChannel(options.channel);
+
 	/*if (result != 0)
 	{
 		std::cout << "Database not opened." << std::endl;
 		return result;
 	}*/
 
-	gh::command_registry registry("hubballbot.db");	
 	registry.load_commands(); //TODO(gareth): Check that we've not had a problem here.
-
-	gh::horn_command horn(30);
-
-	std::vector<gh::command> bot_commands;
+	
 	bot_commands.push_back(horn.cmd);
 	bot_commands.push_back(registry.add_command);
 	bot_commands.push_back(registry.execute_simple_command);
 
-	send_message("HubballBot is now online");
+	send_message("HubballBot is online");
 
 	gh::message_handler handler(bot_commands, send_message, twitch);
-	twitch.async_receive(handler);
+	twitch.handler = std::move(handler);
+	twitch.async_receive();
 
-	io_context.run();
+	t = boost::thread(boost::bind(&boost::asio::io_context::run, &io_context));
 
+	return true;
+}
+
+MainFrame::MainFrame() : wxFrame(NULL, wxID_ANY, "HubballBot")
+{
+	
+}
+
+int HubballBot::OnExit()
+{
+	io_context.stop();
+	t.join();
 	return 0;
 }
