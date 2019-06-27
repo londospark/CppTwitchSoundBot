@@ -41,6 +41,10 @@ class MainFrame : public wxFrame
 {
 public:
 	MainFrame();
+	void log(std::string const& message);
+
+private:
+	wxTextCtrl* logtext;
 };
 
 wxIMPLEMENT_APP(HubballBot);
@@ -58,7 +62,7 @@ bool HubballBot::OnInit()
 
 	twitch.authenticate(options.username, options.oauth_token);
 
-	std::cout << twitch.receive() << std::endl;
+	frame->log(twitch.receive());
 
 	twitch.send("JOIN #" + options.channel + "\r\n");
 	twitch.send("CAP REQ :twitch.tv/tags\r\n");
@@ -90,7 +94,21 @@ bool HubballBot::OnInit()
 
 MainFrame::MainFrame() : wxFrame(NULL, wxID_ANY, "HubballBot")
 {
-	
+	wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
+	logtext = new wxTextCtrl(this, -1, "", wxDefaultPosition, wxSize(100, 60), wxTE_MULTILINE);
+	// create text ctrl with minimal size 100x60
+	topsizer->Add(
+		logtext,
+		1,            // make vertically stretchable
+		wxEXPAND |    // make horizontally stretchable
+		wxALL,        //   and make border all around
+		10);         // set border width to 10
+
+}
+
+void MainFrame::log(std::string const& message) {
+	logtext->AppendText(message);
+	logtext->AppendText("\n");
 }
 
 int HubballBot::OnExit()
