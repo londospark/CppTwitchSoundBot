@@ -1,5 +1,5 @@
 [requires]
-boost/1.70.0@conan/stable
+boost/1.69.0@conan/stable
 sqlite3/3.28.0@bincrafters/stable
 sfml/2.5.1@bincrafters/stable
 wxwidgets/3.1.2@bincrafters/stable

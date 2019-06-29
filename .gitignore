@@ -346,3 +346,8 @@ build/
 
 # VS CMake build folder
 out/
+
+# CLion build folder
+cmake-build-debug/
+cmake-build-release/
+

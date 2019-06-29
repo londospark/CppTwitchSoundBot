@@ -1,3 +1,4 @@
+#include <iostream>
 #include <boost/asio/connect.hpp>
 #include <boost/asio/read_until.hpp>
 #include <boost/asio/streambuf.hpp>
@@ -42,10 +43,6 @@ namespace gh {
 	void twitch_connection::async_receive()
 	{
 		std::cout << "async_receive\n";
-		/*socket.async_read_some(boost::asio::buffer(buffer), [&](const boost::system::error_code& e, std::size_t size) {
-				std::cout << "handler\n";
-				async_receive();
-			});*/
 		socket.async_read_some(boost::asio::buffer(buffer),
 			[=](const boost::system::error_code& e, std::size_t size) {
 				std::cout << "handler\n";

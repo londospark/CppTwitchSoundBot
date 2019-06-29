@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.10)
 project (HubballBot CXX)
 
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
-include(cotire)
+#include(cotire)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -28,7 +28,7 @@ file(GLOB bot_SRC
 
 add_executable(hb WIN32 ${bot_SRC})
 target_link_libraries(hb ${CONAN_LIBS})
-cotire(hb)
+#cotire(hb)
 
 file(GLOB bot_assets ${CMAKE_CURRENT_SOURCE_DIR}/assets/*.*)
 

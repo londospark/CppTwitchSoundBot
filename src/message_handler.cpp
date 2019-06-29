@@ -1,5 +1,6 @@
 #include "message_handler.h"
 
+#include <iostream>
 #include "twitch_message.h"
 
 namespace gh {

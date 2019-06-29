@@ -60,21 +60,22 @@ namespace gh {
 
 	void command_registry::add_command_impl(std::string const& body, gh::twitch_user const& user, message_sender send_message)
 	{
-		if (auto arguments = gh::arguments_for_command("!addcom", body); user.is_moderator())
-		{
-			// !addcom youtube Follow Gareth on youtube...
+        if (user.is_moderator()) {
+            if (auto arguments = gh::arguments_for_command("!addcom", body)) {
+                // !addcom youtube Follow Gareth on youtube...
 
-			if (int index = arguments->find_first_of(" "); index != std::string::npos) {
-				std::string command_to_add;
-				std::string reply;
+                if (int index = arguments->find_first_of(" "); index != std::string::npos) {
+                    std::string command_to_add;
+                    std::string reply;
 
-				command_to_add = arguments->substr(0, index);
-				reply = arguments->substr(static_cast<size_t>(index) + 1);
+                    command_to_add = arguments->substr(0, index);
+                    reply = arguments->substr(static_cast<size_t>(index) + 1);
 
-				repo.add_command(command_to_add, reply);
-				simple_commands[command_to_add] = reply;
-			}
-		}
+                    repo.add_command(command_to_add, reply);
+                    simple_commands[command_to_add] = reply;
+                }
+            }
+        }
 	}
 
 	std::string const

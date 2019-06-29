@@ -1,5 +1,8 @@
 #pragma once
 
+#include <map>
+#include <string>
+#include <memory>
 #include <sqlite3.h>
 
 namespace gh {

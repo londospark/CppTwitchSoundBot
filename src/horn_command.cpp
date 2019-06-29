@@ -1,4 +1,5 @@
 #include "horn_command.h"
+#include <sstream>
 
 namespace gh {
 

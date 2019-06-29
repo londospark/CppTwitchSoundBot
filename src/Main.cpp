@@ -103,12 +103,11 @@ MainFrame::MainFrame() : wxFrame(NULL, wxID_ANY, "HubballBot")
 		wxEXPAND |    // make horizontally stretchable
 		wxALL,        //   and make border all around
 		10);         // set border width to 10
-
 }
 
 void MainFrame::log(std::string const& message) {
-	logtext->AppendText(message);
-	logtext->AppendText("\n");
+	std::ostream stream(logtext);
+    stream << message << '\n';
 }
 
 int HubballBot::OnExit()

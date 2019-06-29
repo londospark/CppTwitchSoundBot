@@ -1,5 +1,7 @@
 #include "twitch_user.h"
 
+#include <boost/spirit/include/qi.hpp>
+
 namespace qi = boost::spirit::qi;
 namespace ascii = boost::spirit::ascii;
 namespace fusion = boost::fusion;
