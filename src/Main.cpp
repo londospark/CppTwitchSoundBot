@@ -19,7 +19,7 @@
 #include "twitch_connection.h"
 #include "options.h"
 #include "message_handler.h"
-
+#include "main_frame.h"
 
 class HubballBot : public wxApp
 {
@@ -38,16 +38,6 @@ public:
 	gh::horn_command horn;
 };
 
-class MainFrame : public wxFrame
-{
-public:
-	MainFrame();
-	void log(std::string const& message);
-
-private:
-	wxTextCtrl* logtext;
-};
-
 wxIMPLEMENT_APP(HubballBot);
 
 HubballBot::HubballBot() : twitch(gh::twitch_connection(io_context)), registry(gh::command_registry("hubballbot.db")), horn(gh::horn_command(30))
@@ -56,7 +46,7 @@ HubballBot::HubballBot() : twitch(gh::twitch_connection(io_context)), registry(g
 
 bool HubballBot::OnInit()
 {
-	MainFrame* frame = new MainFrame();
+	gh::MainFrame* frame = new gh::MainFrame();
 	frame->Show();
 
 	auto options = gh::options::from_file("config.properties");
@@ -88,28 +78,9 @@ bool HubballBot::OnInit()
 	twitch.handler = std::move(handler);
 	twitch.async_receive();
 
-	// t = std::thread(std::bind(&asio::io_context::run, &io_context));
 	t = std::thread([&]() { io_context.run(); });
 
 	return true;
-}
-
-MainFrame::MainFrame() : wxFrame(NULL, wxID_ANY, "HubballBot")
-{
-	wxBoxSizer* topsizer = new wxBoxSizer(wxVERTICAL);
-	logtext = new wxTextCtrl(this, -1, "", wxDefaultPosition, wxSize(100, 60), wxTE_MULTILINE);
-	// create text ctrl with minimal size 100x60
-	topsizer->Add(
-		logtext,
-		1,            // make vertically stretchable
-		wxEXPAND |    // make horizontally stretchable
-		wxALL,        //   and make border all around
-		10);         // set border width to 10
-}
-
-void MainFrame::log(std::string const& message) {
-	std::ostream stream(logtext);
-    stream << message << '\n';
 }
 
 int HubballBot::OnExit()

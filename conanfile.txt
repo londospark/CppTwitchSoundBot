@@ -7,7 +7,7 @@ wxwidgets/3.1.2@bincrafters/stable
 
 [options]
 sfml:audio=True
-boost:shared=True
+
 boost:without_test=True
 boost:without_wave=True
 boost:system_no_deprecated=True
@@ -24,6 +24,7 @@ boost:without_random=True
 boost:without_locale=True
 boost:without_regex=True
 boost:without_thread=True
+
 wxwidgets:webview=False
 
 [generators]

@@ -1,9 +1,6 @@
 cmake_minimum_required (VERSION 3.10)
 project (HubballBot CXX)
 
-set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
-#include(cotire)
-
 set(CMAKE_CXX_STANDARD 17)
 
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
@@ -29,8 +26,6 @@ file(GLOB bot_SRC
 add_compile_definitions(ASIO_STANDALONE)
 add_executable(hb WIN32 ${bot_SRC})
 target_link_libraries(hb ${CONAN_LIBS})
-target_compile_options(hb PRIVATE -Wall)
-#cotire(hb)
 
 file(GLOB bot_assets ${CMAKE_CURRENT_SOURCE_DIR}/assets/*.*)
 
