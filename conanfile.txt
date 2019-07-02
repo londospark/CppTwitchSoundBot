@@ -24,6 +24,7 @@ boost:without_random=True
 boost:without_locale=True
 boost:without_regex=True
 boost:without_thread=True
+wxwidgets:webview=False
 
 [generators]
 cmake
