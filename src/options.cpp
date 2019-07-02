@@ -14,7 +14,7 @@ namespace gh {
 
 		options_description desc;
 		desc.add_options()
-			("authentication.username", "username of the bot")
+			("authentication.username", "The Twitch username that your bot runs under")
 			("authentication.oauth_token", "Your bot's OAuth Token (starts with oauth:)")
 			("settings.channel", "Channel to join (your username)");
 

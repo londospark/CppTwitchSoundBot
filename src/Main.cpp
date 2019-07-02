@@ -9,7 +9,8 @@
 #include <codecvt>
 #include <optional>
 #include <wx/wx.h>
-#include <boost/thread.hpp>
+#include <thread>
+#include <functional>
 
 #include "twitch_message.h"
 #include "command_registry.h"
@@ -28,8 +29,8 @@ public:
 
 	HubballBot();
 
-	boost::asio::io_context io_context;
-	boost::thread t;
+	asio::io_context io_context;
+	std::thread t;
 	gh::twitch_connection twitch;
 	std::vector<gh::command> bot_commands;
 	std::function<size_t(const std::string&)> send_message;
@@ -87,7 +88,8 @@ bool HubballBot::OnInit()
 	twitch.handler = std::move(handler);
 	twitch.async_receive();
 
-	t = boost::thread(boost::bind(&boost::asio::io_context::run, &io_context));
+	// t = std::thread(std::bind(&asio::io_context::run, &io_context));
+	t = std::thread([&]() { io_context.run(); });
 
 	return true;
 }
@@ -116,3 +118,4 @@ int HubballBot::OnExit()
 	t.join();
 	return 0;
 }
+

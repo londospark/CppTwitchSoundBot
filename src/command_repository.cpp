@@ -5,7 +5,7 @@ namespace {
 		connect(std::string const& filename)
 	{
 		sqlite3* handle;
-		int result = sqlite3_open("hubballbot.db", &handle);
+		/*int result = */ sqlite3_open("hubballbot.db", &handle);
 		return std::unique_ptr<sqlite3, decltype(&sqlite3_close)>(handle, &sqlite3_close);
 	}
 

@@ -26,8 +26,10 @@ file(GLOB bot_SRC
     "src/*.h"
     "src/*.cpp")
 
+add_compile_definitions(ASIO_STANDALONE)
 add_executable(hb WIN32 ${bot_SRC})
 target_link_libraries(hb ${CONAN_LIBS})
+target_compile_options(hb PRIVATE -Wall)
 #cotire(hb)
 
 file(GLOB bot_assets ${CMAKE_CURRENT_SOURCE_DIR}/assets/*.*)

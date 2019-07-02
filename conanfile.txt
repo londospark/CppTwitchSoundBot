@@ -1,4 +1,5 @@
 [requires]
+asio/1.13.0@bincrafters/stable
 boost/1.69.0@conan/stable
 sqlite3/3.28.0@bincrafters/stable
 sfml/2.5.1@bincrafters/stable
@@ -6,7 +7,23 @@ wxwidgets/3.1.2@bincrafters/stable
 
 [options]
 sfml:audio=True
+boost:shared=True
 boost:without_test=True
+boost:without_wave=True
+boost:system_no_deprecated=True
+boost:asio_no_deprecated=True
+boost:without_exception=True
+boost:without_container=True
+boost:without_math=True
+boost:without_contract=True
+boost:without_log=True
+boost:without_mpi=True
+boost:without_chrono=True
+boost:without_date_time=True
+boost:without_random=True
+boost:without_locale=True
+boost:without_regex=True
+boost:without_thread=True
 
 [generators]
 cmake

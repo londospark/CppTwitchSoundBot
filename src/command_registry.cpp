@@ -29,7 +29,7 @@ namespace gh {
 
 		auto stripped = raw_command.substr(1);
 
-		if (size_t index = stripped.find_first_of(" ");
+		if (auto index = stripped.find_first_of(" ");
 			index != std::string::npos)
 		{
 			return parsed_command {
@@ -64,12 +64,12 @@ namespace gh {
             if (auto arguments = gh::arguments_for_command("!addcom", body)) {
                 // !addcom youtube Follow Gareth on youtube...
 
-                if (int index = arguments->find_first_of(" "); index != std::string::npos) {
+                if (auto index = arguments->find_first_of(" "); index != std::string::npos) {
                     std::string command_to_add;
                     std::string reply;
 
                     command_to_add = arguments->substr(0, index);
-                    reply = arguments->substr(static_cast<size_t>(index) + 1);
+                    reply = arguments->substr(index + 1);
 
                     repo.add_command(command_to_add, reply);
                     simple_commands[command_to_add] = reply;
