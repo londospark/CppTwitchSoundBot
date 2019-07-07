@@ -49,36 +49,40 @@ bool HubballBot::OnInit()
 	gh::MainFrame* frame = new gh::MainFrame();
 	frame->Show();
 
-	auto options = gh::options::from_file("config.properties");
+	if (auto options = gh::options::from_file("config.properties")) {
 
-	twitch.authenticate(options.username, options.oauth_token);
+		twitch.authenticate(options->username, options->oauth_token);
 
-	frame->log(twitch.receive());
+		frame->log(twitch.receive());
 
-	twitch.send("JOIN #" + options.channel + "\r\n");
-	twitch.send("CAP REQ :twitch.tv/tags\r\n");
+		twitch.send("JOIN #" + options->channel + "\r\n");
+		twitch.send("CAP REQ :twitch.tv/tags\r\n");
 
-	send_message = twitch.sendToChannel(options.channel);
+		send_message = twitch.sendToChannel(options->channel);
 
-	/*if (result != 0)
-	{
-		std::cout << "Database not opened." << std::endl;
-		return result;
-	}*/
+		/*if (result != 0)
+		{
+			std::cout << "Database not opened." << std::endl;
+			return result;
+		}*/
 
-	registry.load_commands(); //TODO(gareth): Check that we've not had a problem here.
-	
-	bot_commands.push_back(horn.cmd);
-	bot_commands.push_back(registry.add_command);
-	bot_commands.push_back(registry.execute_simple_command);
+		registry.load_commands(); //TODO(gareth): Check that we've not had a problem here.
 
-	send_message("HubballBot is online");
+		bot_commands.push_back(horn.cmd);
+		bot_commands.push_back(registry.add_command);
+		bot_commands.push_back(registry.execute_simple_command);
 
-	gh::message_handler handler(bot_commands, send_message, twitch);
-	twitch.handler = std::move(handler);
-	twitch.async_receive();
+		send_message("HubballBot is online");
 
-	t = std::thread([&]() { io_context.run(); });
+		gh::message_handler handler(bot_commands, send_message, twitch);
+		twitch.handler = std::move(handler);
+		twitch.async_receive();
+
+		t = std::thread([&]() { io_context.run(); });
+	}
+	else {
+		std::cout << "Config file invalid\n";
+	}
 
 	return true;
 }

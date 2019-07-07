@@ -1,11 +1,5 @@
 #include "twitch_user.h"
 
-#include <boost/spirit/include/qi.hpp>
-
-namespace qi = boost::spirit::qi;
-namespace ascii = boost::spirit::ascii;
-namespace fusion = boost::fusion;
-
 namespace gh {
 	twitch_user::twitch_user(std::map<std::string, std::string> attrs)
 		: attributes(std::move(attrs)) { }
@@ -13,25 +7,21 @@ namespace gh {
 	twitch_user
 		twitch_user::from_attributes(std::string const& attr_list)
 	{
-		using ascii::char_;
-		using qi::parse;
-		using fusion::at_c;
-		using boost::proto::deep_copy;
+		std::map<std::string, std::string> attributes{};
+		size_t current_position{};
+		size_t next_position{};
 
-		std::map<std::string, std::string> attributes;
+		while (current_position != std::string::npos)
+		{
+			auto split = attr_list.find('=', next_position);
+			auto key = attr_list.substr(next_position, split - next_position);
 
-		const auto kvp = [&attributes](fusion::vector<std::vector<char>, std::vector<char>> const& pair) {
-			auto key = at_c<0>(pair);
-			auto value = at_c<1>(pair);
+			current_position = attr_list.find(';', split);
+			next_position = current_position + 1;
 
-			attributes[std::string(key.begin(), key.end())] = std::string(value.begin(), value.end());
-		};
-
-		const auto attr_parser = deep_copy(
-			(((+(char_ - '=')) >> '=' >> (*(char_ - ';')))[kvp]) % ';'
-		);
-
-		parse(attr_list.begin(), attr_list.end(), attr_parser);
+			auto value = attr_list.substr(split + 1, current_position - split - 1);
+			attributes[key] = value;
+		}
 
 		return twitch_user(std::move(attributes));
 	}
